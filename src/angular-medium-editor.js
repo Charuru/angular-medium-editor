@@ -52,7 +52,10 @@ angular.module('angular-medium-editor', [])
               var editor = new MediumEditor(iElement, opts);
             }
 
-            ctrl.$setViewValue(iElement.html());
+            if (ctrl.$viewValue != iElement.html()) {
+              ctrl.$setViewValue(iElement.html());
+              scope.$emit('editChanged', iElement)
+            }
           });
         };
 
